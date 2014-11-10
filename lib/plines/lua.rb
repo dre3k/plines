@@ -33,7 +33,10 @@ module Plines
         job_batch.id
     end
 
-    def job_batch_awaiting_external_dependency?(job_batch:, dependency_name:)
+    def job_batch_awaiting_external_dependency?(opts)
+      job_batch       = opts[:job_batch]
+      dependency_name = opts[:dependency_name]
+
       !!call(:is_job_batch_awaiting_external_dependency,
         job_batch.pipeline.name,
         job_batch.id,
